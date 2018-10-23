@@ -1,7 +1,3 @@
-<% @repo_names_with_access.each do |repo| %>
-  <%= link_to repo, "" %>
-  <br/>
-<%end%>
 <% if current_user.blank? %>
   <h1>Please Sign In</h1>
   <%= link_to 'Sign In with Github', '/auth/github' %>
@@ -11,3 +7,9 @@
   </p>
   <%= button_to "Sign Out", signout_path, method: :delete %>
 <% end %>
+<%if @repo_names_with_access.present? %>
+  <% @repo_names_with_access.each do |repo| %>
+    <%= link_to repo, "" %>
+    <br/>
+  <%end%>
+<%end%>
