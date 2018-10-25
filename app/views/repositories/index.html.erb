@@ -1,0 +1,6 @@
+<%if @repo_names_with_access.present? %>
+  <% @repo_names_with_access.each do |repo| %>
+    <%= link_to(repo["name"], repository_path(id: repo["name"], description: repo["description"])) %>
+    <br/>
+  <%end%>
+<%end%>

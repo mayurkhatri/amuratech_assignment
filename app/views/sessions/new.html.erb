@@ -7,9 +7,3 @@
   </p>
   <%= button_to "Sign Out", signout_path, method: :delete %>
 <% end %>
-<%if @repo_names_with_access.present? %>
-  <% @repo_names_with_access.each do |repo| %>
-    <%= link_to repo, "" %>
-    <br/>
-  <%end%>
-<%end%>

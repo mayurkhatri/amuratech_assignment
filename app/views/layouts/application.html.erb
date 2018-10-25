@@ -6,10 +6,33 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <style>
 
+    .axis {
+      font: 10px sans-serif;
+    }
+
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+
+    </style>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
   <body>
+    <% if current_user.blank? %>
+      <h1>Please Sign In</h1>
+      <%= link_to 'Sign In with Github', '/auth/github' %>
+    <% else %>
+      <p>
+        You are signed in as <%= current_user.username %>.  Click the button below to sign out.
+      </p>
+      <%= button_to "Sign Out", signout_path, method: :delete %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
