@@ -2,37 +2,40 @@
 <html>
   <head>
     <title>AmuratechAssignment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <style>
+      .axis {
+        font: 10px sans-serif;
+      }
 
-    .axis {
-      font: 10px sans-serif;
-    }
-
-    .axis path,
-    .axis line {
-      fill: none;
-      stroke: #000;
-      shape-rendering: crispEdges;
-    }
-
+      .axis path,
+      .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+      }
     </style>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
   </head>
   <body>
-    <% if current_user.blank? %>
-      <h1>Please Sign In</h1>
-      <%= link_to 'Sign In with Github', '/auth/github' %>
-    <% else %>
-      <p>
-        You are signed in as <%= current_user.username %>.  Click the button below to sign out.
-      </p>
-      <%= button_to "Sign Out", signout_path, method: :delete %>
-    <% end %>
+    <nav class="navbar navbar-light bg-light">
+      <div class="container">
+        <% if current_user.blank? %>
+          <h1>Please Sign In</h1>
+          <%= link_to 'Sign In with Github', '/auth/github' %>
+        <% else %>
+          Welcome <%= current_user.username %>
+        <div class="navbar-nav">
+          <%= link_to "Sign Out", signout_path, method: :delete, class: "nav-item nav-link pull-right" %>
+        </div>
+        <%end%>
+      </div>
+    </nav>
+    <%= render partial: "shared/navbar"%>
     <%= yield %>
   </body>
 </html>

@@ -6,5 +6,9 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   delete 'signout', to: 'sessions#destroy', as: 'signout'
   root to: 'repositories#index'
-  resources :repositories, only: [:index, :show]
+  resources :repositories, only: [:index, :show] do
+    member do
+      get 'get_commits', defaults: { format: 'json' }
+    end
+  end
 end

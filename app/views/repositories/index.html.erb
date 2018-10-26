@@ -1,6 +1,20 @@
-<%if @repo_names_with_access.present? %>
-  <% @repo_names_with_access.each do |repo| %>
-    <%= link_to(repo["name"], repository_path(id: repo["name"], description: repo["description"])) %>
-    <br/>
-  <%end%>
-<%end%>
+<table class="table table-striped sortable css-serial">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Repository Name</th>
+      <th>Repository Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%if @repo_names_with_access.present? %>
+      <% @repo_names_with_access.each do |repo| %>
+        <tr>
+          <td></td>
+          <td><%= link_to(repo["name"], repository_path(id: repo["name"], description: repo["description"])) %></td>
+          <td><%= repo["description"] %></td>
+        </tr>
+      <%end%>
+    <%end%>
+  </tbody>
+</table>

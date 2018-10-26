@@ -1,12 +1,32 @@
-<h1>Name : <%= @repository_name %></h1>
-<h1>Description : <%= @repository_description %></h1>
-<script type="text/javascript">
-  $(function() {
-    loadGraph("<%=@commit_history_array %>", "<%=@repository_name%>");
-  });
-</script>
 <div class="row">
-  <div class="large-7 medium-7 small-12 columns" id="chart">
-    <ol id="langDetails"></ol>
+  <div class="col-xs-1" style="padding-left: 3%">
+    <h2><%= @repository_name %></h2>
+    <p><%= @repository_description %></p>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-8" style="padding-left: 3%">
+    <div class="row">
+      <div class="col-md-3">Start date: <input type="text" id="startdate" class="datepicker"></div>
+      <div class="col-md-3">End date: <input type="text" id="enddate" class="datepicker"></div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-primary" id="getcommits" onclick="getCommitBtn()" style="position: absolute;bottom: 0">Get commits</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function() {
+    var date = new Date();
+    date.setMonth(date.getMonth() - 1);
+
+    $( "#startdate" ).datepicker().datepicker("setDate", date);
+    $( "#enddate" ).datepicker().datepicker("setDate", new Date());
+  });
+  function getCommitBtn(){
+    getCommits("<%=@repository_name %>");
+  }
+</script>
+
+

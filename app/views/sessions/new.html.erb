@@ -1,5 +1,6 @@
 <% if current_user.blank? %>
   <h1>Please Sign In</h1>
+<br>
   <%= link_to 'Sign In with Github', '/auth/github' %>
 <% else %>
   <p>

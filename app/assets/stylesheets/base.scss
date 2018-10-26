@@ -1,0 +1,72 @@
+$font_family_1: sans-serif;
+$background_color_1: #FFFACD;
+$background_color_2: #C7D9D9;
+
+/** {
+     border: solid red 1px !important;
+}*/
+.xaxis {
+  path {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+  }
+  line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+  }
+  text {
+    font-family: $font_family_1;
+    font-size: 11px;
+  }
+}
+.yaxis {
+  path {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+  }
+  line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+  }
+  text {
+    font-family: $font_family_1;
+    font-size: 11px;
+  }
+}
+input {
+  width: 100%;
+  font-size: 14px;
+  line-height: 2em;
+}
+.center-text {
+  text-align: center;
+}
+li {
+  cursor: pointer;
+  &:hover {
+    background-color: $background_color_1;
+  }
+}
+rect {
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  &:hover {
+    fill: firebrick;
+  }
+}
+.bar-chart {
+  background-color: $background_color_2;
+}
+.table {
+  margin: auto;
+  width: 50% !important;
+}
+#datepicker {
+  width: 20%;
+}

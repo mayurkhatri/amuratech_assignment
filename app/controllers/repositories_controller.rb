@@ -18,9 +18,22 @@ class RepositoriesController < ApplicationController
     @repository_name = params[:id]
     @repository_description = params[:description]
     @user_name = current_user.username.to_s
-    uri = URI("https://api.github.com/repos/#{@user_name}/#{@repository_name}/commits?client_id=#{ENV['GITHUB_CLIENT_ID']}&client_secret=#{ENV['GITHUB_CLIENT_SECRET']}")
+    since = Time.now - 30.days
+    till = Time.now
+    uri = URI("https://api.github.com/repos/#{@user_name}/#{@repository_name}/commits?client_id=#{ENV['GITHUB_CLIENT_ID']}&client_secret=#{ENV['GITHUB_CLIENT_SECRET']}&since=#{since}&until=#{till}")
     commit_history = Net::HTTP.get(uri)
     json_result = JSON.parse(commit_history)
     @commit_history_array = json_result.map{|e| e["commit"]["author"]["date"]}.join(",")
+  end
+
+  def get_commits
+    since = Time.now - 30.days
+    till = Time.now
+    uri = URI("https://api.github.com/repos/mayurkhatri/amuratech_assignment/commits?client_id=#{ENV['GITHUB_CLIENT_ID']}&client_secret=#{ENV['GITHUB_CLIENT_SECRET']}&since=#{since}&until=#{till}")
+    #uri = URI("https://api.github.com/repos/#{user_name}/#{repository_name}/commits?client_id=#{ENV['GITHUB_CLIENT_ID']}&client_secret=#{ENV['GITHUB_CLIENT_SECRET']}&since=#{since}&until=#{till}")
+    commit_history = Net::HTTP.get(uri)
+    json_result = JSON.parse(commit_history)
+    @commit_history_array = json_result.map{|e| e["commit"]["author"]["date"]}.join(",")
+    render json: json_result
   end
 end
