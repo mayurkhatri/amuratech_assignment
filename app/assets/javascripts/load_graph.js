@@ -32,9 +32,14 @@ function getCommits(repository_name){
 function getCommitData(data, repository_name, callback){
   var dateArray = [];
 
-  data.forEach(function(item){
-    dateArray.push(item["commit"]["author"]["date"]);
-  });
+  for (var i = 0, len = data.length; i < len; i++) {
+    console.log("data array", data.length);
+    console.log("data array element", data[0]);
+    dateArray.push(data[i]["commit"]["author"]["date"]);
+  }
+  // data.forEach(function(item){
+  //   dateArray.push(item["commit"]["author"]["date"]);
+  // });
   callback(dateArray, repository_name);
 }
 function loadGraph(commitHistory, repositoryName){
