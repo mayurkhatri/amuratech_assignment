@@ -14,6 +14,5 @@
 //= require rails-ujs
 //= require bootstrap
 //= require activestorage
-//= require turbolinks
-//= require d3.min
+//= require d3
 //= require_tree .
