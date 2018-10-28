@@ -29,7 +29,13 @@ function getCommits(repository_name){
   });
 }
 
+function clearCanvas(){
+  $("#chart").empty(); // clear out chart children
+  d3.selectAll("svg").remove(); // clear out chart
+}
+
 function getCommitData(data, repository_name, callback){
+  clearCanvas();
   var dateArray = [];
 
   for (var i = 0, len = data.length; i < len; i++) {
